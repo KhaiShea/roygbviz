@@ -16,7 +16,7 @@ def room(right: float = 0.18, left: float = 0.02, axis: str = "x", breaks=None):
 
 
 def end_labels(data, x: str, y: str, group: str, label: str | None = None, *, dot: bool = True,
-               size: float = 3.4, text_size: float = 9, gap: float = 0.015, bold: bool = True, ink: bool = True):
+               size: float = 3.4, text_size: float = 9, gap: float = 0.025, bold: bool | str = False, ink: bool = True):
     """Layers that put a dot and the group's name at the last point of each line.
 
     ``data`` is the DataFrame behind the plot, ``x``, ``y`` and ``group`` are column names (``x`` must be numeric).
@@ -38,5 +38,5 @@ def end_labels(data, x: str, y: str, group: str, label: str | None = None, *, do
     mapping = aes(x=x, y=y, label=label or group) if ink else aes(x=x, y=y, label=label or group, colour=group)
     kw = dict(colour=text_col) if ink else {}
     layers.append(geom_text(mapping, data=last, ha="left", nudge_x=gap * span, size=text_size,
-                            fontweight="bold" if bold else "normal", show_legend=False, **kw))
+                            fontweight=("bold" if bold is True else bold) or "normal", show_legend=False, **kw))
     return layers
