@@ -11,7 +11,7 @@ from .scales import (roygbviz, scale_color_roygbviz_c, scale_color_roygbviz_d, s
                      scale_fill_roygbviz_c, scale_fill_roygbviz_d, scale_fill_roygbviz_div)
 from .theme import theme_roygbviz
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = [
     "ROLES", "Palette", "Report", "check", "cmap", "colour", "colour_map", "end_labels", "get_palette", "group_map", "levels", "shade", "shade_map", "stroke", "room",
     "roygbviz", "theme_roygbviz", "use",

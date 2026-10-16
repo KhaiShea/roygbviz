@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 (2026-10-17)
 
 - `end_labels` text is now regular weight by default (was bold), with a little more space after the dot. Pass `bold=True` for the old look, or `bold="medium"`/`"semibold"` if your font has it.
 

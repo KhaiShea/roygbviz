@@ -13,7 +13,7 @@
 
 *(roy-gee-bee-viz)*
 
-**v0.1.0.** My own plotnine theme and colour palette for research figures.
+**v0.1.1.** My own plotnine theme and colour palette for research figures.
 
 ![Palette](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/palette.png)
 

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "roygbviz"
-version = "0.1.0"
+version = "0.1.1"
 description = "A rainbow theme and palette for plotnine: twelve colours, light and dark, made for research figures people can actually follow."
 readme = "README.md"
 requires-python = ">=3.10"
