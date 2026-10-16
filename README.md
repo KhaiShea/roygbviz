@@ -3,6 +3,12 @@
   <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/logo/logo_b_dark.png#gh-dark-mode-only" width="480" alt="Roygbviz">
 </p>
 
+<p align="center">
+  <a href="https://pypi.org/project/roygbviz/"><img src="https://img.shields.io/pypi/v/roygbviz" alt="PyPI"></a>
+  <a href="https://github.com/KhaiShea/roygbviz/actions"><img src="https://github.com/KhaiShea/roygbviz/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="MIT licence"></a>
+</p>
+
 # Roygbviz
 
 *(roy-gee-bee-viz)*
@@ -29,8 +35,16 @@ Also, I just wanted it to look pretty. Cream paper, serif titles, hairline grid,
 </p>
 
 ```bash
-pip install -e .          # from this folder
+pip install roygbviz
 ```
+
+Want the latest code instead? Install straight from GitHub:
+
+```bash
+pip install git+https://github.com/KhaiShea/roygbviz.git
+```
+
+Or clone it and edit it yourself (`pip install -e .` from the project folder).
 
 ```python
 import roygbviz as rv
