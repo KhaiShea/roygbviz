@@ -112,8 +112,8 @@ Nine of the twelve are for the models and three are for the stages. Each stage l
 | | Light | Dark |
 |---|---|---|
 | STT | `#AC3E5C` | `#AC415D` |
-| LLM | `#0062A1` | `#006AAE` |
-| TTS | `#ABD865` | `#ACD768` |
+| LLM | `#ABD865` | `#ACD768` |
+| TTS | `#0062A1` | `#006AAE` |
 
 **Models** (default colours)
 
@@ -166,11 +166,11 @@ Use levels for things within one model (different settings, say) or for stacked 
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/diverging_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/diverging_light.png" alt="Diverging heatmap from the LLM colour through white to the STT colour" width="640">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/diverging_light.png" alt="Diverging heatmap from the TTS colour through white to the STT colour" width="640">
 </picture>
 </p>
 
-`rv.scale_fill_roygbviz_div()` is a straight gradient. **+1 is the STT colour (hot), 0 is white, and -1 is the LLM colour (cold).** The ends are the stage colours, so a diverging chart still feels like part of the same set. It centres on zero unless you pass `midpoint=`. In dark mode zero is a soft cream-white (`#F3EEE3`) so it doesn't glare.
+`rv.scale_fill_roygbviz_div()` is a straight gradient. **+1 is the STT colour (hot), 0 is white, and -1 is the TTS colour (cold).** The ends are the stage colours, so a diverging chart still feels like part of the same set. It centres on zero unless you pass `midpoint=`. In dark mode zero is a soft cream-white (`#F3EEE3`) so it doesn't glare.
 
 On the pale tiles use dark text for labels. On the strong ends use white (light mode) or navy (dark mode). The gallery shows this.
 

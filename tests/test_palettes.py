@@ -91,7 +91,7 @@ def test_diverging_runs_cold_to_hot(mode):
     from roygbviz.palettes import DIVERGING_MID
     p = rv.get_palette(mode)
     div = p.diverging(9)
-    assert div[0] == p.groups["LLM"] and div[-1] == p.groups["STT"]  # -1 LLM colour, +1 STT colour
+    assert div[0] == p.groups["TTS"] and div[-1] == p.groups["STT"]  # -1 TTS colour, +1 STT colour
     assert div[4] == DIVERGING_MID[mode]                              # 0 is white
     L = [C.to_oklch(h)[0] for h in div]
     # lightness rises from the blue end to the white middle and falls to the red end

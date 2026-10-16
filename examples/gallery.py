@@ -148,7 +148,7 @@ def diverging():
             + geom_text(aes(label="label", colour="ink"), size=9, show_legend=False)
             + scale_colour_manual(values={"hi": hi, "lo": "#1B2A41"})
             + rv.scale_fill_roygbviz_div()
-            + labs(title="Change vs baseline", subtitle="-1 is the LLM colour, 0 is white, +1 is the STT colour", x="", y="", fill="pp"))
+            + labs(title="Change vs baseline", subtitle="-1 is the TTS colour, 0 is white, +1 is the STT colour", x="", y="", fill="pp"))
 
 
 FNS = (lines, nine, stages, levels_demo, scatter, heat, diverging)

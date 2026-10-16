@@ -29,12 +29,12 @@ _COLOURS: dict[tuple[str, str], dict[str, str]] = {
 }
 
 # --- stage (group) colours -------------------------------------------------------------------------
-# For top-level STT / LLM / TTS comparisons: crimson, deep blue and lime from the same rainbow. Each stage leads a block of four
+# For top-level STT / LLM / TTS comparisons: crimson, lime and deep blue from the same rainbow. Each stage leads a block of four
 # neighbouring hues: STT with red, orange, yellow; LLM with green, teal, blue; TTS with indigo, violet, pink.
 GROUPS: tuple[str, ...] = ("STT", "LLM", "TTS")
 _GROUPS: dict[str, dict[str, str]] = {
-    "light": dict(STT="#AC3E5C", LLM="#0062A1", TTS="#ABD865"),
-    "dark": dict(STT="#AC415D", LLM="#006AAE", TTS="#ACD768"),
+    "light": dict(STT="#AC3E5C", LLM="#ABD865", TTS="#0062A1"),
+    "dark": dict(STT="#AC415D", LLM="#ACD768", TTS="#006AAE"),
 }
 
 # Series order: the order model colours are handed out in plots. Each new colour is the one furthest from those
@@ -169,12 +169,12 @@ class Palette:
         return out
 
     def diverging(self, n: int = 9) -> list[str]:
-        """Cold to hot: +1 is the STT stage colour (crimson), 0 is white, -1 is the LLM stage colour (deep blue), with a straight gradient between.
+        """Cold to hot: +1 is the STT stage colour (crimson), 0 is white, -1 is the TTS stage colour (deep blue), with a straight gradient between.
 
         Returned cold to hot (index 0 is -1, the last is +1). ``n`` is forced odd so the midpoint is exactly white.
         """
         n += (n + 1) % 2
-        cold, hot, mid = self.groups["LLM"], self.groups["STT"], DIVERGING_MID[self.mode]
+        cold, hot, mid = self.groups["TTS"], self.groups["STT"], DIVERGING_MID[self.mode]
         out = []
         for i in range(n):
             u = (i - (n - 1) / 2) / ((n - 1) / 2)  # -1 (cold) .. 1 (hot)

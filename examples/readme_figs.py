@@ -38,7 +38,7 @@ def div_fig():
     d["x"] = pd.Categorical(d["x"], names); d["y"] = pd.Categorical(d["y"], names[::-1])
     return (ggplot(d, aes("x", "y", fill="v")) + geom_tile(colour=mega.S["N"]["bg"], size=2)
             + rv.scale_fill_roygbviz_div(limits=(-1, 1)) + theme(panel_grid_major=element_blank(), axis_text_x=element_text(rotation=35, ha="right"))
-            + labs(title="Diverging", subtitle="Cold (LLM colour), white, hot (STT colour)", x="", y="", fill=""))
+            + labs(title="Diverging", subtitle="Cold (TTS colour), white, hot (STT colour)", x="", y="", fill=""))
 
 
 FIGS = {
