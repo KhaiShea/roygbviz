@@ -21,6 +21,13 @@ Also, I just wanted it to look pretty. Cream paper, serif titles, hairline grid,
 
 ## Quick start
 
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/quickstart_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/quickstart_light.png" alt="Line chart with each model in its own colour, labelled at the line ends" width="640">
+</picture>
+</p>
+
 ```bash
 pip install -e .          # from this folder
 ```
@@ -50,6 +57,13 @@ rv.use("light")           # or "dark"
 | Name lines at their ends | `rv.end_labels(...)` and `rv.room()` |
 
 ## Twelve colours from one rainbow
+
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_light.png" alt="Stacked bars for STT, TTS and LLM in their stage colours" width="640">
+</picture>
+</p>
 
 I built these from Kate Morley's article [A 12-bit rainbow palette](https://iamkate.com/data/12-bit-rainbow/), which she made for National Grid: Live. It explains the problem better than I can, but the short version is this:
 
@@ -109,6 +123,13 @@ COL = rv.colour_map(["Whisper", "Llama", "Kokoro", "Other"])   # "Other" gets gr
 
 ## Levels of lightness
 
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/levels_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/levels_light.png" alt="Five lightness levels for three colours" width="640">
+</picture>
+</p>
+
 Every one of the twelve comes in five levels, from deep to soft. The default colour is the middle one, in both light and dark. If you change your mind, `DEFAULT_LEVEL` in `palettes.py` moves it.
 
 ```python
@@ -121,11 +142,25 @@ Use levels for things within one model (different settings, say) or for stacked 
 
 ## Diverging (cold to hot)
 
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/diverging_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/diverging_light.png" alt="Diverging heatmap from the LLM colour through white to the STT colour" width="640">
+</picture>
+</p>
+
 `rv.scale_fill_roygbviz_div()` is a straight gradient. **+1 is the STT colour (hot), 0 is white, and -1 is the LLM colour (cold).** The ends are the stage colours, so a diverging chart still feels like part of the same set. It centres on zero unless you pass `midpoint=`. In dark mode zero is a soft cream-white (`#F3EEE3`) so it doesn't glare.
 
 On the pale tiles use dark text for labels. On the strong ends use white (light mode) or navy (dark mode). The gallery shows this.
 
 ## Shading
+
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/shading_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/shading_light.png" alt="Overlapping density curves with shaded fills and default-colour edges" width="640">
+</picture>
+</p>
 
 For fills (areas, bands, ribbons, bar and box bodies) I use `rv.shade(colour)`, which is one level lighter than the default colour. The line or outline keeps the default colour so the edges stay crisp. In dark mode "lighter" means brighter, which still looks like a soft fill against the navy.
 
@@ -137,9 +172,30 @@ ggplot(d, aes("x", "y")) + geom_area(fill=rv.shade("teal"), colour=rv.colour("te
 
 ## Sizes
 
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/sizes_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/sizes_light.png" alt="The same chart at base size 9 and 14" width="640">
+</picture>
+</p>
+
 `base_size` sets the text size, and `rv.stroke(size)` scales line widths and marker sizes to match. So if you shrink a figure to fit a paper's column, the text and the lines shrink together and it still looks right.
 
 ## Mega test
+
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_core_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_core_light.png" alt="Nine core chart types" width="760">
+</picture>
+</p>
+
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_stats_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_stats_light.png" alt="Statistical chart types" width="760">
+</picture>
+</p>
 
 I wanted to know it holds up on more than line charts, so `python examples/mega.py assets` draws 45 charts in light and dark:
 

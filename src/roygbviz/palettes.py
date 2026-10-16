@@ -169,12 +169,12 @@ class Palette:
         return out
 
     def diverging(self, n: int = 9) -> list[str]:
-        """Cold to hot: +1 is the default red, 0 is white, -1 is the LLM stage colour (deep blue), with a straight gradient between.
+        """Cold to hot: +1 is the STT stage colour (crimson), 0 is white, -1 is the LLM stage colour (deep blue), with a straight gradient between.
 
         Returned cold to hot (index 0 is -1, the last is +1). ``n`` is forced odd so the midpoint is exactly white.
         """
         n += (n + 1) % 2
-        cold, hot, mid = self.groups["LLM"], self.roles["red"], DIVERGING_MID[self.mode]
+        cold, hot, mid = self.groups["LLM"], self.groups["STT"], DIVERGING_MID[self.mode]
         out = []
         for i in range(n):
             u = (i - (n - 1) / 2) / ((n - 1) / 2)  # -1 (cold) .. 1 (hot)
