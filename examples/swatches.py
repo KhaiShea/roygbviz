@@ -28,8 +28,8 @@ def block(y, mode):
     ax.add_patch(Rectangle((0.3, y), W - 0.6, 5.05, fill=False, ec="#D9D1BF", lw=0.8))
     ax.text(0.6, y + 0.35, f"{mode.title()} mode", fontsize=12, weight="bold", color=n["text"], va="center", **serif)
     cols = [("STT", p.groups["STT"])] + [(r, p.roles[r]) for r in ("red", "orange", "yellow")] \
-        + [("TTS", p.groups["TTS"])] + [(r, p.roles[r]) for r in ("green", "teal", "blue")] \
-        + [("LLM", p.groups["LLM"])] + [(r, p.roles[r]) for r in ("indigo", "violet", "pink")]
+        + [("LLM", p.groups["LLM"])] + [(r, p.roles[r]) for r in ("green", "teal", "blue")] \
+        + [("TTS", p.groups["TTS"])] + [(r, p.roles[r]) for r in ("indigo", "violet", "pink")]
     for i, (r, base) in enumerate(cols):
         x = 0.6 + i * 0.9
         stage = r in ("STT", "LLM", "TTS")

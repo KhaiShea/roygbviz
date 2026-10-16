@@ -30,7 +30,7 @@ _COLOURS: dict[tuple[str, str], dict[str, str]] = {
 
 # --- stage (group) colours -------------------------------------------------------------------------
 # For top-level STT / LLM / TTS comparisons: crimson, deep blue and lime from the same rainbow. Each stage leads a block of four
-# neighbouring hues: STT with red, orange, yellow; TTS with green, teal, blue; LLM with indigo, violet, pink.
+# neighbouring hues: STT with red, orange, yellow; LLM with green, teal, blue; TTS with indigo, violet, pink.
 GROUPS: tuple[str, ...] = ("STT", "LLM", "TTS")
 _GROUPS: dict[str, dict[str, str]] = {
     "light": dict(STT="#AC3E5C", LLM="#0062A1", TTS="#ABD865"),

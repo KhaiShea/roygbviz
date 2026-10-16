@@ -18,7 +18,7 @@ out = Path(sys.argv[1] if len(sys.argv) > 1 else "assets/logo")
 out.mkdir(parents=True, exist_ok=True)
 plt.rcParams["svg.fonttype"] = "path"
 
-ROW = ["STT", "red", "orange", "yellow", "TTS", "green", "teal", "blue", "LLM", "indigo", "violet", "pink"]
+ROW = ["STT", "red", "orange", "yellow", "LLM", "green", "teal", "blue", "TTS", "indigo", "violet", "pink"]
 LETTERS = ["red", "orange", "yellow", "green", "blue", "violet", "indigo", "pink"]  # r o y g b v i z
 
 

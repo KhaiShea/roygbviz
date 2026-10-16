@@ -19,7 +19,7 @@ rng = np.random.default_rng(7)
 STT = ["Whisper", "Parakeet", "Conformer"]
 LLM = ["Llama", "Qwen", "Gemma"]
 TTS = ["Kokoro", "Piper", "XTTS"]
-NINE = STT + TTS + LLM  # rainbow order: red..yellow (STT), green..blue (TTS), indigo..pink (LLM)
+NINE = STT + LLM + TTS  # rainbow order: red..yellow (STT), green..blue (LLM), indigo..pink (TTS)
 FAMILY = dict(**{m: "STT" for m in STT}, **{m: "LLM" for m in LLM}, **{m: "TTS" for m in TTS})
 
 
@@ -72,7 +72,7 @@ def stages():
         for p, v in zip(pipes, vals):
             rows.append((p, st, v))
     d = pd.DataFrame(rows, columns=["pipeline", "stage", "ms"])
-    d["stage"] = pd.Categorical(d["stage"], ["LLM", "TTS", "STT"])
+    d["stage"] = pd.Categorical(d["stage"], ["TTS", "LLM", "STT"])
     d["pipeline"] = pd.Categorical(d["pipeline"], pipes[::-1])
     tot = d.groupby("pipeline", observed=True)["ms"].sum().reset_index()
     tot["label"] = tot["ms"].astype(str) + " ms"
@@ -81,7 +81,7 @@ def stages():
             + geom_text(aes("pipeline", "ms", label="label"), data=tot, inherit_aes=False, ha="left", nudge_y=14,
                         size=8.5, colour=N["text_2"])
             + coord_flip()
-            + scale_fill_manual(values=base, breaks=["STT", "TTS", "LLM"])
+            + scale_fill_manual(values=base, breaks=["STT", "LLM", "TTS"])
             + scale_y_continuous(limits=(0, 1250), expand=(0, 0))
             + rv.theme_roygbviz(grid="x")
             + theme(legend_position="top", legend_title=element_blank())

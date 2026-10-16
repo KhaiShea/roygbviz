@@ -15,7 +15,12 @@
 
 **v0.1.1.** My own plotnine theme and colour palette for research figures.
 
-![Palette](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/palette.png)
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_light.png" alt="Seven example charts in the Roygbviz theme: lines, bars, stacked bars, levels, scatter, heatmap and diverging" width="900">
+</picture>
+</p>
 
 ## Why I made this
 
@@ -72,12 +77,7 @@ rv.use("light")           # or "dark"
 
 ## Twelve colours from one rainbow
 
-<p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_light.png" alt="Stacked bars for STT, TTS and LLM in their stage colours" width="640">
-</picture>
-</p>
+![Palette](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/palette.png)
 
 I built these from Kate Morley's article [A 12-bit rainbow palette](https://iamkate.com/data/12-bit-rainbow/), which she made for National Grid: Live. It explains the problem better than I can, but the short version is this:
 
@@ -97,8 +97,15 @@ Dark mode uses the same hues with only the lightness moved.
 Nine of the twelve are for the models and three are for the stages. Each stage leads its own block of hues, so a stage and its models look like a family:
 
 - **STT** with red, orange, yellow
-- **TTS** with green, teal, blue
-- **LLM** with indigo, violet, pink
+- **LLM** with green, teal, blue
+- **TTS** with indigo, violet, pink
+
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_dark.png">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_light.png" alt="Stacked bars for STT, LLM and TTS in their stage colours" width="640">
+</picture>
+</p>
 
 **Stages** (default colours)
 

@@ -20,8 +20,8 @@ out.mkdir(parents=True, exist_ok=True)
 STT = ["Whisper", "Parakeet", "Conformer"]
 TTS = ["Kokoro", "Piper", "XTTS"]
 LLM = ["Llama", "Qwen", "Gemma"]
-NINE = STT + TTS + LLM  # rainbow order
-STAGES = ["STT", "TTS", "LLM"]
+NINE = STT + LLM + TTS  # rainbow order: red..yellow (STT), green..blue (LLM), indigo..pink (TTS)
+STAGES = ["STT", "LLM", "TTS"]
 S = {"P": None, "N": {}}  # current palette and neutrals
 
 
@@ -35,7 +35,7 @@ def sh(name, k=1):
 
 
 def models():
-    return rv.colour_map(NINE)
+    return rv.colour_map(NINE, order="rainbow")
 
 
 def stage_cols():
@@ -90,9 +90,9 @@ def bar():
 
 def stacked():
     pipes = [f"Cascade {k}" for k in "ABCDE"]
-    ms = {"STT": [180, 210, 150, 240, 190], "TTS": [210, 160, 260, 190, 140], "LLM": [520, 410, 640, 380, 450]}
+    ms = {"STT": [180, 210, 150, 240, 190], "LLM": [520, 410, 640, 380, 450], "TTS": [210, 160, 260, 190, 140]}
     d = pd.DataFrame([(p, s, v) for s, vs in ms.items() for p, v in zip(pipes, vs)], columns=["pipe", "stage", "ms"])
-    d["stage"] = pd.Categorical(d["stage"], ["LLM", "TTS", "STT"])
+    d["stage"] = pd.Categorical(d["stage"], ["TTS", "LLM", "STT"])
     d["pipe"] = pd.Categorical(d["pipe"], pipes[::-1])
     tot = d.groupby("pipe", observed=True)["ms"].sum().reset_index()
     return (ggplot(d, aes("pipe", "ms", fill="stage")) + geom_col(width=.68, colour=S["N"]["bg"], size=1.1)
@@ -124,10 +124,10 @@ def candle():
 def area():
     rng = np.random.default_rng(5)
     x = np.arange(0, 25)
-    base = {"STT": 30, "TTS": 22, "LLM": 48}
+    base = {"STT": 30, "LLM": 48, "TTS": 22}
     d = pd.DataFrame([(xi, s, max(4, base[s] + 8 * np.sin(xi / 4 + k) + rng.normal(0, 1.2))) for k, s in enumerate(STAGES)
                       for xi in x], columns=["t", "stage", "v"])
-    d["stage"] = pd.Categorical(d["stage"], ["LLM", "TTS", "STT"])
+    d["stage"] = pd.Categorical(d["stage"], ["TTS", "LLM", "STT"])
     return (ggplot(d, aes("t", "v", fill="stage", colour="stage")) + geom_area(size=.9, position="stack")
             + scale_fill_manual(values=rv.shade_map(stage_cols())) + scale_colour_manual(values=stage_cols())
             + scale_x_continuous(expand=(0, 0)) + scale_y_continuous(expand=(0, 0, .05, 0))
@@ -138,7 +138,7 @@ def area():
 def timeline():
     ev = pd.DataFrame(dict(t=[1, 3.2, 5, 7.5, 10, 12],
                            label=["Kick-off", "Data", "Baseline", "Cascade", "Eval", "Write-up"],
-                           y=[1, -1, 1, -1, 1, -1], stage=["STT", "STT", "TTS", "TTS", "LLM", "LLM"]))
+                           y=[1, -1, 1, -1, 1, -1], stage=["STT", "STT", "LLM", "LLM", "TTS", "TTS"]))
     ev["lab_y"] = ev.y * 1.6
     return (ggplot(ev) + geom_hline(yintercept=0, colour=S["N"]["rule"], size=1.2)
             + geom_segment(aes(x="t", xend="t", y=0, yend="y*1.15", colour="stage"), size=.9)
@@ -201,7 +201,7 @@ def waterfall():
 def grouped():
     pipes = ["A", "B", "C", "D"]
     rng = np.random.default_rng(8)
-    d = pd.DataFrame([(p, s, v) for s, base in (("STT", 190), ("TTS", 190), ("LLM", 480)) for p, v in
+    d = pd.DataFrame([(p, s, v) for s, base in (("STT", 190), ("LLM", 480), ("TTS", 190)) for p, v in
                       zip(pipes, base + rng.normal(0, 40, 4))], columns=["pipe", "stage", "ms"])
     d["stage"] = pd.Categorical(d["stage"], STAGES)
     return (ggplot(d, aes("pipe", "ms", fill="stage", colour="stage"))
@@ -338,7 +338,7 @@ def st_hist():
 
 def st_density():
     rng = np.random.default_rng(11)
-    d = pd.DataFrame([(s, v) for s, mu, sd in (("STT", 5, 1.3), ("TTS", 8, 1.6), ("LLM", 11, 1.9)) for v in rng.normal(mu, sd, 500)],
+    d = pd.DataFrame([(s, v) for s, mu, sd in (("STT", 5, 1.3), ("LLM", 11, 1.9), ("TTS", 8, 1.6)) for v in rng.normal(mu, sd, 500)],
                      columns=["stage", "x"])
     d["stage"] = pd.Categorical(d["stage"], STAGES)
     return (ggplot(d, aes("x", fill="stage", colour="stage")) + geom_density(alpha=.72, size=1)
@@ -359,7 +359,7 @@ def st_box():
 
 def st_violin():
     rng = np.random.default_rng(13)
-    d = pd.DataFrame([(s, v) for s, mu, sd in (("STT", 5, 1.3), ("TTS", 8, 1.6), ("LLM", 11, 1.9)) for v in rng.normal(mu, sd, 400)],
+    d = pd.DataFrame([(s, v) for s, mu, sd in (("STT", 5, 1.3), ("LLM", 11, 1.9), ("TTS", 8, 1.6)) for v in rng.normal(mu, sd, 400)],
                      columns=["stage", "v"])
     d["stage"] = pd.Categorical(d["stage"], STAGES)
     return (ggplot(d, aes("stage", "v", fill="stage", colour="stage")) + geom_violin(size=.9, draw_quantiles=[.5], show_legend=False)
