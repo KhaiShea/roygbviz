@@ -13,7 +13,9 @@
 
 *(roy-gee-bee-viz)*
 
-**v0.1.1.** My own plotnine theme and colour palette for research figures.
+**v0.1.1.**
+
+My own plotnine theme and colour palette for research figures.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_light.png#gh-light-mode-only" alt="Seven example charts in the Roygbviz theme: lines, bars, stacked bars, levels, scatter, heatmap and diverging" width="900">
