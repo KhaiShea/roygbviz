@@ -28,7 +28,7 @@ Academic papers can be so boring to read, especially if you're not a technical p
 
 Figures are the best shot I've got at that. A chart people can read at a glance does more than another paragraph of methods. So I wanted a theme where the colours mean something and stay the same everywhere: each model keeps its colour in every figure, and the three stages (STT, LLM, TTS) each get their own.
 
-Also, I just wanted it to look pretty. Serif titles, a hairline grid, and labels written right on the lines so nobody has to squint at a legend. It comes in three modes: white (the default), dark, and the original cream paper.
+Also, I just wanted it to look pretty. Serif titles, a hairline grid, and easily readable labels. It comes in three modes: white, dark, and cream.
 
 ## Quick start
 
