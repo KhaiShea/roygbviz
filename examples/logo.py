@@ -84,11 +84,12 @@ def build(opt, mode, w=8, h=3.2, transparent=True):
 
 if __name__ == "__main__":
     for opt in "b":
-        for mode in ("light", "dark"):
-            fig = build(opt, mode)
-            fig.savefig(out / f"logo_{opt}_{mode}.svg", transparent=True)
-            fig.savefig(out / f"logo_{opt}_{mode}.png", transparent=True, dpi=200)
-            plt.close(fig)
+        for mode in ("light", "dark", "cream"):
+            if mode != "cream":  # the logo is transparent, so cream and light are the same file
+                fig = build(opt, mode)
+                fig.savefig(out / f"logo_{opt}_{mode}.svg", transparent=True)
+                fig.savefig(out / f"logo_{opt}_{mode}.png", transparent=True, dpi=200)
+                plt.close(fig)
             # social preview: 1280 x 640 with the page colour behind
             fig = build(opt, mode, w=8, h=4, transparent=False)
             fig.savefig(out / f"social_{opt}_{mode}.png", dpi=160, facecolor=fig.get_facecolor())

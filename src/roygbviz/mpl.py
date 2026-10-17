@@ -23,6 +23,7 @@ def use(mode: str = "light", colourblind: bool = False, order: str = "series",
         plotnine: bool = True, base_size: float = 11, grid: str = "y"):
     """Make Roygbviz the default for the whole session: matplotlib rcParams, colormaps, and plotnine's theme.
 
+    ``mode`` is ``"light"`` (white paper, the default), ``"dark"``, or ``"cream"`` (the original warm paper).
     ``grid`` is ``"y"`` (horizontal hairlines, the default), ``"x"``, ``"xy"`` or ``"none"``.
     Returns the active :class:`~roygbviz.palettes.Palette`.
     """
@@ -50,6 +51,11 @@ def use(mode: str = "light", colourblind: bool = False, order: str = "series",
         "lines.linewidth": 2.0 * base_size / 11, "lines.markersize": 7 * base_size / 11,
         "axes.prop_cycle": cycler(color=p.series(order=order)),
         "image.cmap": "roygbviz",
+        "boxplot.boxprops.color": n["text_2"], "boxplot.whiskerprops.color": n["text_2"], "boxplot.capprops.color": n["text_2"],
+        "boxplot.medianprops.color": p.roles["red"], "boxplot.medianprops.linewidth": 1.8 * base_size / 11,
+        "boxplot.boxprops.linewidth": 1.3 * base_size / 11, "boxplot.whiskerprops.linewidth": 1.3 * base_size / 11,
+        "boxplot.capprops.linewidth": 1.3 * base_size / 11, "boxplot.flierprops.markeredgecolor": n["muted"],
+        "errorbar.capsize": 3,
     })
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")  # re-registering on every use() is intentional

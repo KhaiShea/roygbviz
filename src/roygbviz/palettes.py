@@ -42,11 +42,24 @@ _GROUPS: dict[str, dict[str, str]] = {
 _SERIES_ORDER: tuple[str, ...] = ("red", "yellow", "teal", "violet", "orange", "pink", "blue", "green", "indigo")
 
 DIVERGING_MID: dict[str, str] = {"light": "#FFFFFF", "dark": "#F3EEE3"}
-"""The zero point of the diverging ramp: white on cream paper, and the cream-white ink colour in dark mode."""
+"""The zero point of the diverging ramp: white in light and cream modes, and the cream-white ink colour in dark mode."""
 
-# --- neutrals (cream paper and navy ink; dark mode swaps them) ---------------------------------------
+# --- neutrals ----------------------------------------------------------------------------------------
+# Three surfaces share two sets of hues. "light" is white paper with navy ink (the default), "cream" is the original
+# warm paper, and "dark" is navy with cream ink. The colours themselves only change between light-like and dark.
+MODES: tuple[str, ...] = ("light", "dark", "cream")
+
+
+def _family(mode: str) -> str:
+    """The colour family a mode uses: ``"dark"`` for dark, ``"light"`` for light and cream."""
+    return "dark" if mode == "dark" else "light"
+
+
 _NEUTRALS: dict[str, dict[str, str]] = {
-    "light": dict(bg="#FAF6EF", panel="#FAF6EF", grid="#E9E2D4", grid_minor="#F1EBDF", strip="#EFE8D9",
+    "light": dict(bg="#FFFFFF", panel="#FFFFFF", grid="#E6E8EE", grid_minor="#F1F2F6", strip="#F2F3F7",
+                  rule="#C3C8D2", tick="#6A7183", muted="#6A7183", text_2="#4D5466", text="#1B2A41",
+                  grey="#8C92A1", mid="#EDEFF4"),
+    "cream": dict(bg="#FAF6EF", panel="#FAF6EF", grid="#E9E2D4", grid_minor="#F1EBDF", strip="#EFE8D9",
                   rule="#C9C1B0", tick="#756F61", muted="#756F61", text_2="#4D5466", text="#1B2A41",
                   grey="#8E897C", mid="#ECE6D8"),
     "dark": dict(bg="#141A29", panel="#141A29", grid="#232B40", grid_minor="#1B2235", strip="#1D2538",
@@ -86,8 +99,8 @@ def _hue_lerp(a: float, b: float, t: float) -> float:
 
 
 def _check_mode(mode: str) -> str:
-    if mode not in ("light", "dark"):
-        raise ValueError(f"mode must be 'light' or 'dark', not {mode!r}")
+    if mode not in MODES:
+        raise ValueError(f"mode must be 'light', 'dark' or 'cream', not {mode!r}")
     return mode
 
 
@@ -103,7 +116,7 @@ class Palette:
     @property
     def groups(self) -> dict[str, str]:
         """The three stage colours for top-level comparisons: ``{"STT": ..., "LLM": ..., "TTS": ...}``."""
-        return {k: _shift(v, DEFAULT_LEVEL[self.mode]) if DEFAULT_LEVEL[self.mode] else v for k, v in _GROUPS[self.mode].items()}
+        return {k: _shift(v, DEFAULT_LEVEL[_family(self.mode)]) if DEFAULT_LEVEL[_family(self.mode)] else v for k, v in _GROUPS[_family(self.mode)].items()}
 
     # ---- categorical ----
     def levels(self, role: str, n: int = 5) -> list[str]:
@@ -115,7 +128,7 @@ class Palette:
             raise ValueError(f"role must be one of {ROLES + GROUPS}")
         if n not in (3, 5, 7):
             raise ValueError("n must be 3, 5 or 7")
-        idx = n // 2 - DEFAULT_LEVEL[self.mode]  # the default sits at index n // 2 unless DEFAULT_LEVEL moves it
+        idx = n // 2 - DEFAULT_LEVEL[_family(self.mode)]  # the default sits at index n // 2 unless DEFAULT_LEVEL moves it
         up, down = max(3, n - 1 - idx), max(3, idx)
         return [_shift(base, k, up if k > 0 else down) if k else base for k in range(-idx, n - idx)]
 
@@ -152,13 +165,13 @@ class Palette:
         out = []
         for i in range(n):
             s = i / (n - 1)
-            L = 0.935 - 0.635 * s if self.mode == "light" else 0.27 + 0.62 * s
+            L = 0.935 - 0.635 * s if _family(self.mode) == "light" else 0.27 + 0.62 * s
             chroma = 1.05 * c_base * (min(1.0, 0.2 + 1.6 * s) if s <= 0.5 else 1.0 - 0.35 * (s - 0.5) / 0.5)
             out.append(C.oklch_to_hex(L, chroma, h))
         return out
 
     def _spectrum(self, n: int) -> list[str]:
-        stops = _SPECTRUM[self.mode]
+        stops = _SPECTRUM[_family(self.mode)]
         out = []
         for i in range(n):
             s = i / (n - 1)
@@ -174,7 +187,7 @@ class Palette:
         Returned cold to hot (index 0 is -1, the last is +1). ``n`` is forced odd so the midpoint is exactly white.
         """
         n += (n + 1) % 2
-        cold, hot, mid = self.groups["TTS"], self.groups["STT"], DIVERGING_MID[self.mode]
+        cold, hot, mid = self.groups["TTS"], self.groups["STT"], DIVERGING_MID[_family(self.mode)]
         out = []
         for i in range(n):
             u = (i - (n - 1) / 2) / ((n - 1) / 2)  # -1 (cold) .. 1 (hot)
@@ -186,12 +199,13 @@ class Palette:
 
 
 def get_palette(mode: str = "light", colourblind: bool = False) -> Palette:
-    """Return the :class:`Palette` for a mode ('light' or 'dark').
+    """Return the :class:`Palette` for a mode: ``'light'`` (white, the default), ``'dark'`` or ``'cream'`` (the original warm paper).
 
     The colourblind-safe set is planned but not built yet, so ``colourblind=True`` raises for now.
     """
     _check_mode(mode)
     if colourblind:
         raise NotImplementedError("the colourblind-safe palette is not built yet; use colourblind=False")
-    roles = {r: _shift(h, DEFAULT_LEVEL[mode]) if DEFAULT_LEVEL[mode] else h for r, h in _COLOURS[("standard", mode)].items()}
+    fam = _family(mode)
+    roles = {r: _shift(h, DEFAULT_LEVEL[fam]) if DEFAULT_LEVEL[fam] else h for r, h in _COLOURS[("standard", fam)].items()}
     return Palette(mode, False, roles, dict(_NEUTRALS[mode]))

@@ -4,7 +4,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from . import _colour as C
-from .palettes import get_palette
+from .palettes import _family, get_palette
 
 BAND = {"light": (0.43, 0.77), "dark": (0.48, 0.67)}  # OKLCH lightness band for categorical marks
 CHROMA_FLOOR = 0.09   # slightly below the usual 0.10: this palette is deliberately muted
@@ -41,7 +41,7 @@ def check(colours: list[str], mode: str = "light", surface: str | None = None, p
     ``pairs="all"`` (default) compares every pair, which is what nine colours on one chart need; ``"adjacent"`` only compares neighbours.
     """
     surface = surface or get_palette(mode).surface
-    lo, hi = BAND[mode]
+    lo, hi = BAND[_family(mode)]
     lch = [C.to_oklch(c) for c in colours]
     n = len(colours)
     idx = [(i, j) for i in range(n) for j in range(i + 1, n)] if pairs == "all" else [(i, i + 1) for i in range(n - 1)]

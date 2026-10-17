@@ -10,14 +10,14 @@ from matplotlib.patches import Rectangle
 import roygbviz as rv
 
 out = sys.argv[1] if len(sys.argv) > 1 else "assets/palette.png"
-W, H = 12.0, 12.6
-fig = plt.figure(figsize=(W, H), facecolor="#FAF6EF")
+W, H = 12.0, 18.0
+fig = plt.figure(figsize=(W, H), facecolor="#FFFFFF")
 ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, W); ax.set_ylim(H, 0); ax.axis("off")
 font = {"family": rv.mpl.pick_font()}
 serif = {"family": rv.config.pick_serif()}
-ink, soft = "#1B2A41", "#756F61"
+ink, soft = "#1B2A41", "#6A7183"
 ax.text(0.5, 0.5, "Roygbviz palette", fontsize=22, weight="bold", color=ink, va="center", **serif)
-ax.text(0.5, 0.95, "Twelve colours from one rainbow (nine models, three stages), five lightness levels each, in light and dark.",
+ax.text(0.5, 0.95, "Twelve colours from one rainbow (nine models, three stages), five lightness levels each, in light (white), dark and cream.",
         fontsize=10, color=soft, va="center", **font)
 
 
@@ -25,7 +25,7 @@ def block(y, mode):
     p = rv.get_palette(mode)
     n = p.neutrals
     ax.add_patch(Rectangle((0.3, y), W - 0.6, 5.05, color=n["bg"], lw=0))
-    ax.add_patch(Rectangle((0.3, y), W - 0.6, 5.05, fill=False, ec="#D9D1BF", lw=0.8))
+    ax.add_patch(Rectangle((0.3, y), W - 0.6, 5.05, fill=False, ec="#D5D9E0", lw=0.8))
     ax.text(0.6, y + 0.35, f"{mode.title()} mode", fontsize=12, weight="bold", color=n["text"], va="center", **serif)
     cols = [("STT", p.groups["STT"])] + [(r, p.roles[r]) for r in ("red", "orange", "yellow")] \
         + [("LLM", p.groups["LLM"])] + [(r, p.roles[r]) for r in ("green", "teal", "blue")] \
@@ -45,14 +45,15 @@ def block(y, mode):
             ax.add_patch(Rectangle((0.6 + j * 2.65 + k * 0.2, y + 3.85), 0.2, 0.4, color=hx, lw=0))
         ax.text(0.6 + j * 2.65, y + 4.4, name, fontsize=7.5, color=n["muted"], va="center", **font)
     for k, key in enumerate(("bg", "grid", "rule", "muted", "text_2", "text")):
-        ax.add_patch(Rectangle((0.6 + k * 1.25, y + 4.6), 1.15, 0.3, color=n[key], ec="#D9D1BF", lw=0.5))
+        ax.add_patch(Rectangle((0.6 + k * 1.25, y + 4.6), 1.15, 0.3, color=n[key], ec="#D5D9E0", lw=0.5))
         ax.text(0.6 + k * 1.25 + 0.05, y + 4.75, key, fontsize=6.5, va="center",
                 color=n["text"] if key in ("bg", "grid") else n["bg"], **font)
 
 
 block(1.35, "light")
 block(6.75, "dark")
-ax.text(0.5, 12.25, "Hand-out order: " + ", ".join(rv.palettes._SERIES_ORDER), fontsize=8,
+block(12.15, "cream")
+ax.text(0.5, 17.6, "Hand-out order: " + ", ".join(rv.palettes._SERIES_ORDER), fontsize=8,
         color=soft, va="center", **font)
 fig.savefig(out, dpi=130, facecolor=fig.get_facecolor())
 print("wrote", out)

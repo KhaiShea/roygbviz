@@ -15,6 +15,8 @@
 
 **v0.1.1.** My own plotnine theme and colour palette for research figures.
 
+**Learning to plot?** The [knowledge base](docs/index.md) covers setup, fonts, the grammar of graphics, the anatomy of a figure, choosing a plot, speech-pipeline comparisons, and over 220 real examples with code.
+
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_dark.png">
@@ -28,7 +30,7 @@ Academic papers can be so boring to read, especially if you're not a technical p
 
 Figures are the best shot I've got at that. A chart people can read at a glance does more than another paragraph of methods. So I wanted a theme where the colours mean something and stay the same everywhere: each model keeps its colour in every figure, and the three stages (STT, LLM, TTS) each get their own.
 
-Also, I just wanted it to look pretty. Cream paper, serif titles, hairline grid, and labels written right on the lines so nobody has to squint at a legend. It works in light and dark.
+Also, I just wanted it to look pretty. Serif titles, a hairline grid, and labels written right on the lines so nobody has to squint at a legend. It comes in three modes: white (the default), dark, and the original cream paper.
 
 ## Quick start
 
@@ -55,7 +57,7 @@ Or clone it and edit it yourself (`pip install -e .` from the project folder).
 import roygbviz as rv
 from plotnine import ggplot, aes, geom_line
 
-rv.use("light")           # or "dark"
+rv.use("light")           # white by default; or "dark", or "cream"
 
 (ggplot(df, aes("epoch", "loss", colour="model"))
  + geom_line()
@@ -63,7 +65,7 @@ rv.use("light")           # or "dark"
  + rv.scale_colour_roygbviz_d())
 ```
 
-`rv.use()` sets up plotnine's theme, matplotlib's defaults and colour cycle, and the colormaps `roygbviz`, `roygbviz_spectrum` and `roygbviz_div`. It remembers whether you picked light or dark.
+`rv.use()` sets up plotnine's theme, matplotlib's defaults and colour cycle, and the colormaps `roygbviz`, `roygbviz_spectrum` and `roygbviz_div`. It remembers which mode you picked: `"light"` (white paper, the default), `"dark"` or `"cream"` (the original warm paper). Light and cream share the same colours, and only the paper and neutrals differ.
 
 | You are drawing | Add |
 |---|---|
@@ -218,19 +220,19 @@ ggplot(d, aes("x", "y")) + geom_area(fill=rv.shade("teal"), colour=rv.colour("te
 </picture>
 </p>
 
-I wanted to know it holds up on more than line charts, so `python examples/mega.py assets` draws 45 charts in light and dark:
+I wanted to know it holds up on more than line charts, so `python examples/mega.py assets` draws 45 charts in light, dark and cream:
 
 - **Core:** line, bar, stacked bar, candlestick, area, timeline, horizon, waterfall, grouped bar
 - **Chart elements:** arrows, level difference, reference line, benchmark, trendline, shade, difference, projection
 - **Statistical:** histogram, density, boxplot, violin, scatter, bubble, point range, step, 2D bins, lollipop, dumbbell, slope, small multiples
 - **Styles:** grids, levels, sizes, shading steps
 
-The sheets land in `assets/mega_{core,elements,stats,styles}_{light,dark}.png`.
+The sheets land in `assets/mega_{core,elements,stats,styles}_{light,dark,cream}.png`.
 
 ## Honest caveats
 
 - **Some colours are close.** Twelve evenly spaced hues can't be as far apart as nine I spread by hand. The closest pair is about 10.7 apart in light and 10.5 in dark (OKLab, times 100). A stage sits right next to its models on the wheel, so keep stage charts and model charts separate, and use shape or direct labels.
-- **Contrast is weak on cream.** Yellow is only about 1.3:1, and teal, orange and green are under 3:1 in light mode. For thin lines, label them directly, add an outline, or use `level=-1`. `end_labels` sets the text in ink for this reason.
+- **Contrast is weak on pale paper.** Yellow is only about 1.35:1 on white (1.25:1 on cream), and teal, orange and green are under 3:1 in light and cream modes. For thin lines, label them directly, add an outline, or use `level=-1`. `end_labels` sets the text in ink for this reason.
 - **Twelve colours is a lot.** The usual advice is eight at most. That was my brief, so pair colour with labels or shapes.
 - **No colourblind-safe set yet.** `colourblind=True` raises `NotImplementedError`. It's on my list.
 
@@ -262,7 +264,8 @@ Roygbviz itself is under the MIT licence (see `LICENSE`).
 
 ## Gallery
 
-![Light](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_light.png)
+![Light (white, the default)](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_light.png)
 ![Dark](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_dark.png)
+![Cream](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_cream.png)
 
 Regenerate with `python examples/gallery.py` and `python examples/swatches.py`. Tests: `pytest`.

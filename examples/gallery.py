@@ -165,7 +165,7 @@ def build(mode):
 
 if __name__ == "__main__":
     from PIL import Image
-    for tag in [build("light"), build("dark")]:
+    for tag in [build("light"), build("dark"), build("cream")]:
         ims = [Image.open(out / f"_{tag}_{n}.png") for n in NAMES]
         w, h = ims[0].size
         sheet = Image.new("RGB", (w * 4, h * 2), ims[0].getpixel((3, 3)))

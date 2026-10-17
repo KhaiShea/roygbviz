@@ -5,7 +5,7 @@ from plotnine import aes, geom_line, ggplot, labs
 
 import roygbviz as rv
 
-rv.use("light")  # or rv.use("dark")
+rv.use("light")  # white by default; or "dark", or "cream"
 
 x = np.arange(20)
 df = pd.concat([pd.DataFrame({"epoch": x, "loss": np.exp(-x / (4 + k)) + 0.05 * k, "model": m})

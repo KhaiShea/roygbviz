@@ -4,7 +4,7 @@ import roygbviz as rv
 from roygbviz import _colour as C
 from roygbviz.palettes import _SERIES_ORDER
 
-MODES = ("light", "dark")
+MODES = ("light", "dark", "cream")
 
 
 @pytest.mark.parametrize("mode", MODES)
@@ -92,7 +92,7 @@ def test_diverging_runs_cold_to_hot(mode):
     p = rv.get_palette(mode)
     div = p.diverging(9)
     assert div[0] == p.groups["TTS"] and div[-1] == p.groups["STT"]  # -1 TTS colour, +1 STT colour
-    assert div[4] == DIVERGING_MID[mode]                              # 0 is white
+    assert div[4] == DIVERGING_MID["dark" if mode == "dark" else "light"]                              # 0 is white
     L = [C.to_oklch(h)[0] for h in div]
     # lightness rises from the blue end to the white middle and falls to the red end
     assert all(a <= b + 1e-6 for a, b in zip(L[:5], L[1:5])) and all(a >= b - 1e-6 for a, b in zip(L[4:], L[5:]))
@@ -120,3 +120,23 @@ def test_stroke_scales_with_base_size():
     assert abs(rv.stroke(1.0) - 14 / 11) < 1e-9
     assert rv.stroke(1.0, base_size=9) < 1
     rv.use("light")
+
+
+def test_light_is_white_and_cream_is_the_old_paper():
+    assert rv.get_palette("light").neutrals["bg"] == "#FFFFFF"
+    assert rv.get_palette("cream").neutrals["bg"] == "#FAF6EF"
+    assert rv.get_palette("dark").neutrals["bg"] == "#141A29"
+
+
+def test_light_and_cream_share_their_colours():
+    a, b = rv.get_palette("light"), rv.get_palette("cream")
+    assert a.roles == b.roles and a.groups == b.groups
+
+
+def test_light_is_the_default_mode():
+    import subprocess
+    import sys
+
+    out = subprocess.run([sys.executable, "-c", "import roygbviz as rv; from roygbviz.config import _STATE; print(_STATE['mode'])"],
+                         capture_output=True, text=True, check=True).stdout.strip()
+    assert out == "light"

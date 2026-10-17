@@ -13,7 +13,7 @@ def _lines():
     return d, ggplot(d, aes("x", "y", colour="g")) + geom_line()
 
 
-@pytest.mark.parametrize("mode", ["light", "dark"])
+@pytest.mark.parametrize("mode", ["light", "dark", "cream"])
 def test_use_and_draw(mode, tmp_path):
     rv.use(mode)
     d, g = _lines()

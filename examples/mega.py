@@ -569,5 +569,5 @@ def ggplot_build_safe(fn):
 
 
 if __name__ == "__main__":
-    for m in ("light", "dark"):
+    for m in ("light", "dark", "cream"):
         build(m)

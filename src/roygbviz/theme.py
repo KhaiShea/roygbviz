@@ -12,7 +12,7 @@ class theme_roygbviz(theme_gray):
 
     Parameters
     ----------
-    mode : {"light", "dark"}, optional
+    mode : {"light", "dark", "cream"}, optional
         Defaults to whatever :func:`roygbviz.use` last set (``"light"`` if never called).
     colourblind : bool, optional
         Only the neutrals matter to the theme, so this is here for symmetry with the scales.

@@ -46,7 +46,7 @@ FIGS = {
     "shading": mega.st_density, "boxes": mega.st_box,
 }
 
-for mode in ("light", "dark"):
+for mode in ("light", "dark", "cream"):
     mega.S["P"] = rv.use(mode); mega.S["N"] = mega.S["P"].neutrals
     for name, fn in FIGS.items():
         fn().save(out / f"{name}_{mode}.png", width=W, height=H, dpi=DPI, verbose=False)
