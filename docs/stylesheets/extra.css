@@ -1,0 +1,5 @@
+/* The pages mark each figure for GitHub (#gh-light-mode-only, #gh-dark-mode-only). Here the MkDocs theme toggle picks one. */
+[data-md-color-scheme="slate"] img[src$="#gh-light-mode-only"],
+[data-md-color-scheme="default"] img[src$="#gh-dark-mode-only"] {
+  display: none;
+}

@@ -18,10 +18,8 @@
 **Learning to plot?** The [knowledge base](docs/index.md) covers setup, fonts, the grammar of graphics, the anatomy of a figure, choosing a plot, speech-pipeline comparisons, and over 220 real examples with code.
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_light.png" alt="Seven example charts in the Roygbviz theme: lines, bars, stacked bars, levels, scatter, heatmap and diverging" width="900">
-</picture>
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_light.png#gh-light-mode-only" alt="Seven example charts in the Roygbviz theme: lines, bars, stacked bars, levels, scatter, heatmap and diverging" width="900">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_dark.png#gh-dark-mode-only" alt="Seven example charts in the Roygbviz theme: lines, bars, stacked bars, levels, scatter, heatmap and diverging" width="900">
 </p>
 
 ## Why I made this
@@ -35,10 +33,8 @@ Also, I just wanted it to look pretty. Serif titles, a hairline grid, and labels
 ## Quick start
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/quickstart_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/quickstart_light.png" alt="Line chart with each model in its own colour, labelled at the line ends" width="640">
-</picture>
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/quickstart_light.png#gh-light-mode-only" alt="Line chart with each model in its own colour, labelled at the line ends" width="640">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/quickstart_dark.png#gh-dark-mode-only" alt="Line chart with each model in its own colour, labelled at the line ends" width="640">
 </p>
 
 ```bash
@@ -103,10 +99,8 @@ Nine of the twelve are for the models and three are for the stages. Each stage l
 - **TTS** with indigo, violet, pink
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_light.png" alt="Stacked bars for STT, LLM and TTS in their stage colours" width="640">
-</picture>
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_light.png#gh-light-mode-only" alt="Stacked bars for STT, LLM and TTS in their stage colours" width="640">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/stages_dark.png#gh-dark-mode-only" alt="Stacked bars for STT, LLM and TTS in their stage colours" width="640">
 </p>
 
 **Stages** (default colours)
@@ -147,10 +141,8 @@ COL = rv.colour_map(["Whisper", "Llama", "Kokoro", "Other"])   # "Other" gets gr
 ## Levels of lightness
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/levels_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/levels_light.png" alt="Five lightness levels for three colours" width="640">
-</picture>
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/levels_light.png#gh-light-mode-only" alt="Five lightness levels for three colours" width="640">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/levels_dark.png#gh-dark-mode-only" alt="Five lightness levels for three colours" width="640">
 </p>
 
 Every one of the twelve comes in five levels, from deep to soft. The default colour is the middle one, in both light and dark. If you change your mind, `DEFAULT_LEVEL` in `palettes.py` moves it.
@@ -166,10 +158,8 @@ Use levels for things within one model (different settings, say) or for stacked 
 ## Diverging (cold to hot)
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/diverging_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/diverging_light.png" alt="Diverging heatmap from the TTS colour through white to the STT colour" width="640">
-</picture>
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/diverging_light.png#gh-light-mode-only" alt="Diverging heatmap from the TTS colour through white to the STT colour" width="640">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/diverging_dark.png#gh-dark-mode-only" alt="Diverging heatmap from the TTS colour through white to the STT colour" width="640">
 </p>
 
 `rv.scale_fill_roygbviz_div()` is a straight gradient. **+1 is the STT colour (hot), 0 is white, and -1 is the TTS colour (cold).** The ends are the stage colours, so a diverging chart still feels like part of the same set. It centres on zero unless you pass `midpoint=`. In dark mode zero is a soft cream-white (`#F3EEE3`) so it doesn't glare.
@@ -179,10 +169,8 @@ On the pale tiles use dark text for labels. On the strong ends use white (light 
 ## Shading
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/shading_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/shading_light.png" alt="Overlapping density curves with shaded fills and default-colour edges" width="640">
-</picture>
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/shading_light.png#gh-light-mode-only" alt="Overlapping density curves with shaded fills and default-colour edges" width="640">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/shading_dark.png#gh-dark-mode-only" alt="Overlapping density curves with shaded fills and default-colour edges" width="640">
 </p>
 
 For fills (areas, bands, ribbons, bar and box bodies) I use `rv.shade(colour)`, which is one level lighter than the default colour. The line or outline keeps the default colour so the edges stay crisp. In dark mode "lighter" means brighter, which still looks like a soft fill against the navy.
@@ -196,10 +184,8 @@ ggplot(d, aes("x", "y")) + geom_area(fill=rv.shade("teal"), colour=rv.colour("te
 ## Sizes
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/sizes_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/sizes_light.png" alt="The same chart at base size 9 and 14" width="640">
-</picture>
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/sizes_light.png#gh-light-mode-only" alt="The same chart at base size 9 and 14" width="640">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/examples/sizes_dark.png#gh-dark-mode-only" alt="The same chart at base size 9 and 14" width="640">
 </p>
 
 `base_size` sets the text size, and `rv.stroke(size)` scales line widths and marker sizes to match. So if you shrink a figure to fit a paper's column, the text and the lines shrink together and it still looks right.
@@ -207,17 +193,13 @@ ggplot(d, aes("x", "y")) + geom_area(fill=rv.shade("teal"), colour=rv.colour("te
 ## Mega test
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_core_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_core_light.png" alt="Nine core chart types" width="760">
-</picture>
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_core_light.png#gh-light-mode-only" alt="Nine core chart types" width="760">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_core_dark.png#gh-dark-mode-only" alt="Nine core chart types" width="760">
 </p>
 
 <p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_stats_dark.png">
-  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_stats_light.png" alt="Statistical chart types" width="760">
-</picture>
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_stats_light.png#gh-light-mode-only" alt="Statistical chart types" width="760">
+  <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/mega_stats_dark.png#gh-dark-mode-only" alt="Statistical chart types" width="760">
 </p>
 
 I wanted to know it holds up on more than line charts, so `python examples/mega.py assets` draws 45 charts in light, dark and cream:
@@ -264,8 +246,9 @@ Roygbviz itself is under the MIT licence (see `LICENSE`).
 
 ## Gallery
 
-![Light (white, the default)](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_light.png)
-![Dark](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_dark.png)
-![Cream](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_cream.png)
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_light.png#gh-light-mode-only" alt="Gallery in light mode (white)">
+<img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_dark.png#gh-dark-mode-only" alt="Gallery in dark mode">
+
+The original cream paper: [see the cream gallery](https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_cream.png).
 
 Regenerate with `python examples/gallery.py` and `python examples/swatches.py`. Tests: `pytest`.
