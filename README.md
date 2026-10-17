@@ -15,8 +15,6 @@
 
 **v0.1.1.** My own plotnine theme and colour palette for research figures.
 
-**Learning to plot?** The [knowledge base](docs/index.md) covers setup, fonts, the grammar of graphics, the anatomy of a figure, choosing a plot, speech-pipeline comparisons, and over 220 real examples with code.
-
 <p align="center">
 <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_light.png#gh-light-mode-only" alt="Seven example charts in the Roygbviz theme: lines, bars, stacked bars, levels, scatter, heatmap and diverging" width="900">
   <img src="https://raw.githubusercontent.com/KhaiShea/roygbviz/main/assets/gallery_dark.png#gh-dark-mode-only" alt="Seven example charts in the Roygbviz theme: lines, bars, stacked bars, levels, scatter, heatmap and diverging" width="900">
